@@ -94,7 +94,7 @@ Velocidad promedio en la ruta: \qquad $80 [\frac{km}{hr}].$ & \footnotesize (2) 
 Tiempo en ir desde Santiago a Valparaiso: $T_{Stgo-Valpo}= \frac{110,21 [km]}{80 \frac{km}{hr}}= 1.38[hr]$ &
 \footnotesize (3) \normalsize \\ 
 \tiny & \\ \normalsize
-$X_{\frac{vehic}{día}}=$ \large $\frac{3615_{verano} + 4980_{invierno} + 4959_{primavera}}{3} = $
+$X_{\frac{vehic}{dia}}=$ \large $\frac{3615_{verano} + 4980_{invierno} + 4959_{primavera}}{3} = $
 \normalsize $4518 [\frac{vehic}{dia}]$ & \footnotesize (4) \normalsize\\
 \tiny & \\ \normalsize
 Vehículos en una hora: \qquad \large $\frac{4518 [vehic]}{24 [hr]}=$\normalsize $188,25[\frac{Vehic}{hr}]$ & 
@@ -108,15 +108,15 @@ Vehículos por kilómetro: \qquad \large $\frac{188.25 [\frac{vehic}{hr}]}{80 \f
 Para este supuesto se hace que son 2,35 vehículos en una sola dirección de la ruta, por lo tanto si se 
 extrapola a que la carretera es en ambos sentidos, serían 4.7 vehículos en la carretera en un kilómetro.
 
-Por otro lado utilizando la herramienta googlemaps, se realizan unas 20 muestras en el tramo de la ruta 
-G-68, en donde se tienen que el minimo de autos en un kilómetro de la carretera es de 2 vehículos, y el 
+Por otro lado utilizando la herramienta Google Maps, se realizan unas 20 muestras en el tramo de la ruta 
+G-68, en donde se tienen que el mínimo de autos en un kilómetro de la carretera es de 2 vehículos, y el 
 máximo de vehículos es de 13, sin considerar los puntos en donde se producen atochamientos como son los 
 puntos de peaje.
 
 Cabe señalar que ambas muestras no son 100\% fiables, ya que en el primer caso se consideran sólo 4518 
 vehículos por día, por lo que este valor no toma en cuenta que por ejemplo durante la noche hay menor 
 tráfico que al medio día. Por otro lado, al usar Google Maps, no se puede precisar en qué momento del día 
-fueron tomadas las fotografías. Por estas dos razones, ambos factores entregan datos sólo sirven como 
+fueron tomadas las fotografías. Por estas dos razones, ambos factores entregan datos que sólo sirven como 
 referencias para ciertos escenarios, en los cuales eventualmente sería propuesta la red.
 
 Para este problema, se consideran tres casos:
@@ -125,7 +125,7 @@ Para este problema, se consideran tres casos:
 En primera instancia, una de las principales problemáticas que se tienen que solucionar es encontrar la 
 distancia entre las antenas. 
 
-Según se aprecia la figura \ref{fig:s-adhoc}, la distancia máxima de cobertura por antena, es de 2 Km, sin embargo no 
+Según se aprecia la figura \ref{fig:s-adhoc}, la distancia máxima de cobertura por antena, es de 2 [km], sin embargo no 
 se considera la red Ad-hoc, vale decir, se consideran solamente las antenas sin que los automóviles sean 
 repetidores. En este caso, si se considera la distancia Valparaíso-Santiago de 110,21 km, se necesitaría 
 entonces:
@@ -163,20 +163,22 @@ Este espacio es de $300[m]$, que es la distancia para que el repetidor del vehí
 Se puede realizar el cálculo medio para obtener la probabilidad de que en los próximos 300 [mts] haya un 
 vehículo:\\
 
-P(en 2.35 km haya al menos 1 vehiculo) = $1$ \\            
+P(en 2.35 km haya al menos 1 vehículo) = $1$ \qquad \ \ \ \qquad \footnotesize (7) \normalsize\\            
 
-P(en X km haya al menos 1 vehiculo) = $0.3$  \\        
+P(en X km haya al menos 1 vehículo) = $0.3$ \qquad \quad \ \qquad \footnotesize (8) \normalsize \\        
 
-\Large $\frac{2.35}{1} = \frac{X}{0.3}$ \normalsize \qquad $\Rightarrow \qquad X = 0.70$\\
+\Large $\frac{2.35}{1} = \frac{X}{0.3}$ \normalsize \qquad $\Rightarrow \qquad X = 0.70$
+\qquad \ \qquad \ \qquad \ \qquad \ \footnotesize (9) \normalsize\\
 
 Por consiguiente, la probabilidad media de que en los próximos 300 [mts] haya un automóvil es de 0.7, 
 lo que se traduce en que existe un 70\% de disponibilidad en el tramo en una situación NLOS.\\
 \paragraph{Tercer caso:} Separación mayor entre automóviles.
+
 Por la ecuación (6), el valor promedio de vehículos por km es 2.35, el cual se puede considerar como 
 la distancia entre vehículos. Además, el valor sigue una distribución exponencial con parámetro 
 $\lambda=2,35 [\frac{veh}{km}]$. Por tanto la expresión para modelar la distribución de probabilidad queda 
 de la forma:
-$$ F[x]= 1-e^{-\lambda \cdot x} \qquad \tiny (8)$$
+$$ F[x]= 1-e^{-\lambda \cdot x} \qquad \qquad  \tiny (10)$$
 
 En este caso, es necesario considerar 600 [mts] de separación entre los vehículos, pero para que exista 
 disponibilidad tiene que haber a lo menos un auto en un radio de 300 metros; en 600 metros por lo menos 2.
@@ -185,9 +187,11 @@ encontrar un auto separado 300 metros del otro.
 
 Luego, los cálculos para el tercer caso se presentan a continuación:\\
 
-P(Exista un vehículo a 300[mts]) = $1-e^{-2.35 \cdot 0.3} = 0.51$ \qquad \ \qquad (9)\\
+P(Exista un vehículo a 300[mts]) = $1-e^{-2.35 \cdot 0.3} = 0.51$ \qquad \qquad \qquad
+\footnotesize (11) \normalsize \\
 
-Prob final = P(Exista un vehículo a 300 [mts] $\cdot$ 0,7) = 0.35 \qquad \ \qquad (10)
+Prob final = P(Exista un vehículo a 300 [mts] $\cdot$ 0,7) = 0.35 \qquad \ \qquad 
+\footnotesize (12) \normalsize
 
 \newpage
 \section{Determinación de los enlaces a instalar}
