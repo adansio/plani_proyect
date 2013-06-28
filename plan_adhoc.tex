@@ -76,13 +76,15 @@ tanto  bajo este parámetro no será posible establecer comunicación con otro d
 
 \section{Método de ubicación de los nodos.}
 
-Al ser una red ad-hoc implementada en una carretera, el tráfico que exista en esta, dependerá 
-parcialmente de la cantidad de congestión vehicular que exista en la carretera, para esto se cuenta 
-con los datos existentes en el paper.
+Al ser una red ad-hoc implementada en una carretera, el tráfico y la disponibilidad de la red, dependerá 
+parcialmente de la congestión vehicular que exista en la carretera.
 
-Luego se calcula la densidad de tráfico existente en la ruta 68, para ello con datos del sitio 
-\url{http://servicios.vialidad.cl/censo/index.htm} se extrae la cantidad promedio de vehículos en un 
-tiempo de 24 horas para los periodos de verano, invierno y primavera en 2010, en donde se obtiene que 
+En un trabajo similar de los autores Zong Da Chen HT Kung Dario Vlah (2001) realizan una determinación 
+del tráfico vehicular en base a estadísticas y un software de simulación. 
+
+En base al supuesto anterior se calcula la densidad de tráfico existente en la ruta 68, para ello con datos 
+del sitio \url{http://servicios.vialidad.cl/censo/index.htm} se extrae la cantidad promedio de vehículos 
+en un tiempo de 24 horas para los periodos de verano, invierno y primavera en 2010, en donde se obtiene que 
 en promedio circulan 4518 vehículos en un día, y haciendo la relación con la velocidad con que se 
 realizarán los cálculos, se tiene que:\\
 
@@ -119,16 +121,19 @@ tráfico que al medio día. Por otro lado, al usar Google Maps, no se puede prec
 fueron tomadas las fotografías. Por estas dos razones, ambos factores entregan datos que sólo sirven como 
 referencias para ciertos escenarios, en los cuales eventualmente sería propuesta la red.
 
-Para este problema, se consideran tres casos:
+Una de las principales problemáticas que se tienen que solucionar es encontrar la distancia entre las antenas,
+para este problema, se consideran tres casos:
 \paragraph{Primer caso:} Solamente antenas.
 
 En primera instancia, una de las principales problemáticas que se tienen que solucionar es encontrar la 
 distancia entre las antenas. 
 
-Según se aprecia la figura \ref{fig:s-adhoc}, la distancia máxima de cobertura por antena, es de 2 [km], sin embargo no 
-se considera la red Ad-hoc, vale decir, se consideran solamente las antenas sin que los automóviles sean 
-repetidores. En este caso, si se considera la distancia Valparaíso-Santiago de 110,21 km, se necesitaría 
-entonces:
+Según se aprecia la figura \ref{fig:s-adhoc}, la distancia máxima de cobertura por antena, es de 2 [km], 
+para este caso no se considera que los automóviles actúen como nodos repetidores. Por tanto solo se 
+consideran las antenas como medio de transmisión.
+
+Finalmente, si se considera que la distancia Valparaíso-Santiago de 110,21 km, se necesitaría entonces:
+
 \large $$ \frac{110,21 [km]}{2 [\frac{km}{antena}]}= 55,156 [antenas] \qquad \tiny(7)$$ \normalsize \\
 
 Luego, con 56 antenas se cubre la totalidad del tramo sin la necesidad de vehículos, entregando así un 
@@ -147,51 +152,65 @@ la separación entre las antenas.
 
 Para el cálculo de la separación de las antenas, se realizarán algunas observaciones.
 
-Ahora el parámetro a considerar es el radio de transmisión de los dispositivos en los vehículos, cuyo 
-valor es $300[m]$ para una antena de tipo omnidireccional.
-
-Luego, es necesario considerar un espacio mínimo de espacio sin visión entre las antenas de los vehículos, 
-como se muestra en la figura \ref{fig:adhoc1}
-\begin{figure}[H]
-  \centering
-      \includegraphics[width=0.5\textwidth]{adhoc1}
-	    \caption{Caso sin visión directa de las antenas (NLOS).}
-	\label{fig:adhoc1}
-\end{figure}
-
-Este espacio es de $300[m]$, que es la distancia para que el repetidor del vehículo pueda captar la señal. 
-Se puede realizar el cálculo medio para obtener la probabilidad de que en los próximos 300 [mts] haya un 
-vehículo:\\
-
-P(en 2.35 km haya al menos 1 vehículo) = $1$ \qquad \ \ \ \qquad \footnotesize (7) \normalsize\\            
-
-P(en X km haya al menos 1 vehículo) = $0.3$ \qquad \quad \ \qquad \footnotesize (8) \normalsize \\        
-
-\Large $\frac{2.35}{1} = \frac{X}{0.3}$ \normalsize \qquad $\Rightarrow \qquad X = 0.70$
-\qquad \ \qquad \ \qquad \ \qquad \ \footnotesize (9) \normalsize\\
-
-Por consiguiente, la probabilidad media de que en los próximos 300 [mts] haya un automóvil es de 0.7, 
-lo que se traduce en que existe un 70\% de disponibilidad en el tramo en una situación NLOS.\\
-\paragraph{Tercer caso:} Separación mayor entre automóviles.
-
 Por la ecuación (6), el valor promedio de vehículos por km es 2.35, el cual se puede considerar como 
 la distancia entre vehículos. Además, el valor sigue una distribución exponencial con parámetro 
 $\lambda=2,35 [\frac{veh}{km}]$. Por tanto la expresión para modelar la distribución de probabilidad queda 
 de la forma:
-$$ F[x]= 1-e^{-\lambda \cdot x} \qquad \qquad  \tiny (10)$$
+$$ F[x]= 1-e^{-\lambda \cdot x} \qquad \qquad  (8)$$
 
-En este caso, es necesario considerar 600 [mts] de separación entre los vehículos, pero para que exista 
-disponibilidad tiene que haber a lo menos un auto en un radio de 300 metros; en 600 metros por lo menos 2.
+Otro parámetro a considerar es el radio de transmisión de los dispositivos en los vehículos, cuyo 
+valor es $300[m]$ para una antena de tipo omnidireccional.
+
+Luego, es necesario considerar un espacio mínimo de espacio sin visión entre las antenas de los vehículos, 
+como se muestra en la figura \ref{fig:adhoc2}
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=0.5\textwidth]{adhoc2}
+	    \caption{Consideración de aumentar la separación entre RSU's.}
+	\label{fig:adhoc2}
+\end{figure}
+
+Este espacio es de $300[m]$, que es la distancia para que el repetidor del vehículo pueda captar la señal. 
+Se puede realizar el cálculo medio para obtener la probabilidad de que en los próximos 300 [m] haya un 
+vehículo:\\
+
+P(en 2.35 km haya al menos 1 vehículo) = $1$ \qquad \ \ \ \qquad \footnotesize (9) \normalsize\\            
+
+P(en X km haya al menos 1 vehículo) = $0.3$ \qquad \quad \ \qquad \footnotesize (10) \normalsize \\        
+
+\Large $\frac{2.35}{1} = \frac{X}{0.3}$ \normalsize \qquad $\Rightarrow \qquad X = 0.70$
+\qquad \ \qquad \ \qquad \ \qquad \ \footnotesize (11) \normalsize\\
+
+Por consiguiente, la probabilidad media de que en los próximos 300 [m] haya un automóvil es de 0.7, 
+lo que se traduce en que existe un 70\% de disponibilidad de red en el tramo sin visión (caso NLOS).\\
+\paragraph{Tercer caso:} Separación mayor entre automóviles.
+
+En este caso, es necesario considerar 600 [m] de separación entre los vehículos, pero para que exista 
+disponibilidad tiene que haber a lo menos un auto en un radio de 300 metros, por consiguiente,
+en 600 metros por lo menos 2 vehículos.
 Entonces este cálculo contempla no sólo la regla de 3 anterior, si no que además la probabilidad de 
 encontrar un auto separado 300 metros del otro.
 
 Luego, los cálculos para el tercer caso se presentan a continuación:\\
 
-P(Exista un vehículo a 300[mts]) = $1-e^{-2.35 \cdot 0.3} = 0.51$ \qquad \qquad \qquad
-\footnotesize (11) \normalsize \\
+P(Exista un vehículo a 300[m]) = $1-e^{-2.35 \cdot 0.3} = 0.51$ \qquad \qquad \qquad
+\footnotesize (12) \normalsize \\
 
-Prob final = P(Exista un vehículo a 300 [mts] $\cdot$ 0,7) = 0.35 \qquad \ \qquad 
-\footnotesize (12) \normalsize
+Prob final = P(Exista un vehículo a 300 [m] $\cdot$ 0,7) = 0.35 \qquad \ \qquad 
+\footnotesize (13) \normalsize\\
+
+Luego se obtiene que la probabilidad de encontrar un vehículo cada 300[m], es de 0,51.\\
+
+Por consiguiente, la probabilidad media de que en los próximos 600[m] hayan 2 automóviles y cada uno 
+de ellos esté separado a 300 metros del otro, es de 0.35, lo que se traduce en que existe un 35\% de 
+disponibilidad en el tramo en una situación NLOS de 600[m].\\
+
+Haciendo extrapolación de los resultados, a mayor distancia de NLOS menor es la probabilidad de 
+disponibilidad de servicio.\\
+
+Finalmente, y según el objetivo del proyecto que es entregar disponibilidad por un valor lo más cercano 
+a 99.99\%. hay que implementar antenas sin espacio de NLOS, ya que con un espacio mínimo de 300[m] la 
+disponibilidad baja a 70\% y si seguimos separando este espacio la disponibilidad sigue disminuyendo.\\
 
 \newpage
 \section{Determinación de los enlaces a instalar}
@@ -305,29 +324,39 @@ otros.
 \newpage
 \section{Apreciación personal del trabajo realizado}
 \paragraph{$\cdot$}
-Luego de llevar a cabo el proyecto, se puede decir que es interesante realizar un rol de ingeniero en donde 
-se aplican los conocimientos adquiridos a un problema real, considerando muchos factores al momento de ir 
-desarrollando y proponiendo soluciones.
-\paragraph{$\cdot$}
-Se observa que el problema en sí es complejo, en donde para obtener resultados coherentes y verídicos se 
-tiene que indagar bastante, conseguir datos, estadísticas, desarrollar criterio para ver qué datos sirven 
-y cuales no, asimilar modelos principalmente en este caso en donde adquieren bastante relevancia los 
-conocimientos probabilísticos y el manejo de ellos.
-\paragraph{$\cdot$}
-La implementación de una red ad-hoc más específico aún, una VANET es una área nueva en donde hay mucho por 
-investigar y desarrollar, no existen estándares que sean realmente efectivos, los protocolos, también aún 
-están en desarrollo, existe mucha variación de la implementación dependiendo de la situación y el contexto 
-en donde se quiere implementar una VANET.
-\paragraph{$\cdot$}
-En cuanto a la viabilidad del proyecto, observando los resultados, se puede determinar que este no es 
-viable bajo estas circunstancias, en cuanto a la calidad de servicio que se desea entregar, esto se debe 
-a que se agrega un alto costo debido a la cantidad de RSU’s que se deberían instalar, incluyendo el 
-impacto ambiental que esto traería consigo y el costo de implementación, cablear con fibra 220 km, todo 
-esto versus el servicio que se desea llevar a cabo.
-\paragraph{$\cdot$}
-El trabajo en equipo realizado ha sido útil para desenvolvernos como futuros ingenieros, enfrentando y 
-comparando ideas, defendiéndolas o refutándolas, complementar conocimientos que se han adquirido a lo largo 
-de la carrera.
+Luego de llevar a cabo el proyecto, se puede decir que es interesante realizar el rol de ingeniero en 
+donde se aplican los conocimientos adquiridos a un problema real, considerando muchos factores al 
+momento de ir desarrollando y proponiendo soluciones.
+\paragraph{$\cdot$}Se observa que el problema en sí es complejo, debido a la gran cantidad de aristas que 
+involucra el problema. Debido a esto el proyecto hace varias simplificaciones. Por ejemplo, el valor de 
+la densidad vehicular fue calculado sólo en base a promedios.
+\paragraph{$\cdot$}La implementación de una red ad-hoc más específico aún, una VANET es una área nueva 
+en donde hay mucho por investigar, donde su principal objetivo es el desarrollo de aplicaciones de 
+seguridad vial.
+\paragraph{$\cdot$}En cuanto a la viabilidad del proyecto, observando los resultados, se determinaron 
+2 puntos importantes. El primero de ellos es que para dar disponibilidad de servicios en una carretera 
+hay que implementar el protocolo IEEE 802.11p y no los 802.11b/g/n  como se tenía pensado ya que el 
+primero de estos, es un protocolo que permite agregar acceso inalámbrico en entornos vehiculares, 
+lo que permite la conectividad con nodos a gran velocidad, en otras palabras, vehículos. Lamentablemente, 
+este protocolo es utilizado como la base para comunicaciones dedicadas de corto alcance, por ello la línea 
+de visión de una antena con otra es muy corta (aproximadamente 1[km]).
+\paragraph{$\cdot$}De lo anterior se desprende el segundo punto, bajo las circunstancias del protocolo 
+IEEE 802.11p y en cuanto a la calidad de servicio que se desea entregar que es de un 99,99\% existe un 
+alto costo debido a la gran cantidad de RSU’s que se deberían instalar para obtener este valor de 
+disponibilidad, incluyendo el impacto ambiental que esto traería consigo y el costo de implementación.
+\paragraph{$\cdot$}Cabe señalar que si se disminuyeran el número de antenas, habría que cargar el uso 
+de la red Ad-hoc para transmitir los paquetes, pero el flujo vehicular en la ruta 68 no es lo 
+suficientemente alto, lo cual no hace viable una red Ad-hoc en una espacio de mayor a 300[m], 
+inclusive con esa separación mínima la disponibilidad de servicio es de aproximadamente 70\%.
+\paragraph{$\cdot$}En síntesis, el proyecto tiene dos dificultades que hacen que no sea viable, el 
+corto alcance de las antenas bajo el protocolo 802.11p y el bajo flujo vehicular para sobrecargar una 
+implementación de la red Ad-Hoc. Quizás en un futuro donde el protocolo pueda tener una mayor cobertura, 
+se podría implementar el proyecto de esta naturaleza.  O bien el proyecto puede ser viable para 
+espacios específicos y/o cortos de carreteras.
+\paragraph{$\cdot$}El en cuanto al trabajo en equipo realizado ha sido útil para desenvolvernos como 
+futuros ingenieros, enfrentando y comparando ideas, defendiéndolas o refutándolas y complementar 
+conocimientos que se han adquirido a lo largo de la carrera.
+
 
 \newpage
 \bibliographystyle{abbrv}
