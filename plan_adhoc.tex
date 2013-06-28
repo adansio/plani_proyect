@@ -9,9 +9,25 @@
 
 \title{\large Planificación de Redes \\ \huge Implementación de red Ad-hoc en ruta G-68\\}
 \author{\\ \ \\ \ \\ \ \\ \ \\ \ \\
-	Eduardo Barra: 2730038-3\\
-	Adan Morales: 2830042-5\\
-	Diego Riquelme: 2621044-5}
+\begin{tabular}{ l  l  l }
+Profesor & Nicolás Jara &\\
+	& & \\
+Asignatura & Planificación y & \\
+	& Dimensionamiento & \\
+	& de Redes & \\
+	& & \\
+Sigla & Tel-343 & \\
+	& & \\
+Integrantes & 	Eduardo Barra &  2730038-3\\
+	&	Adan Morales &  2830042-5  \\
+	&	Diego Riquelme &  2621044-5\\
+\Large	& & \\
+	& & \\
+	& & \\
+	& & \\
+	& & \\
+\normalsize	& & \\
+\end{tabular} }
 \date{\today}
 
 \begin{document}
@@ -125,9 +141,6 @@ Una de las principales problemáticas que se tienen que solucionar es encontrar 
 para este problema, se consideran tres casos:
 \paragraph{Primer caso:} Solamente antenas.
 
-En primera instancia, una de las principales problemáticas que se tienen que solucionar es encontrar la 
-distancia entre las antenas. 
-
 Según se aprecia la figura \ref{fig:s-adhoc}, la distancia máxima de cobertura por antena, es de 2 [km], 
 para este caso no se considera que los automóviles actúen como nodos repetidores. Por tanto solo se 
 consideran las antenas como medio de transmisión.
@@ -161,7 +174,7 @@ $$ F[x]= 1-e^{-\lambda \cdot x} \qquad \qquad  (8)$$
 Otro parámetro a considerar es el radio de transmisión de los dispositivos en los vehículos, cuyo 
 valor es $300[m]$ para una antena de tipo omnidireccional.
 
-Luego, es necesario considerar un espacio mínimo de espacio sin visión entre las antenas de los vehículos, 
+Luego, es necesario considerar un espacio mínimo de espacio sin visión entre las antenas, 
 como se muestra en la figura \ref{fig:adhoc2}
 \begin{figure}[H]
   \centering
@@ -266,36 +279,53 @@ La descripción de la topología se divide en 2 partes, la primera de ellas corr
 La topología de la de red de fibra, es la que se muestra a continuación en la figura \ref{fig:anillo_FO}.
 \begin{figure}[H]
   \centering
-      \includegraphics[width=0.7\textwidth]{anillo_FO}
+      \includegraphics[width=0.8\textwidth]{anillo_FO}
 	    \caption{Anillo de fibra que interconecta la red.}
 	\label{fig:anillo_FO}
 \end{figure}
-
+\ \\
 \paragraph{Topología de Red Inalámbrica}
 \paragraph{Red Wifi:} 
 Se presenta como el modelo clásico de una Vehicular Ad-hoc Network (VANET), con ciertos puntos de acceso 
 (RoadSide Unit), en donde ésta será la infraestructura por los cuales los vehículos equipados con un
 dispositivo wireless podrán tener acceso a la red de la carretera y permitirles acceder a internet.
 
+\newpage
 \paragraph{Red Ad-Hoc:}
 En esta sección de la red todos los nodos (vehículos equipados con un dispositivo wireless) presentan 
 funciones iguales en cuanto al enrutamiento, esto quiere decir, que en los tramo en los cuales la señal de 
 los RSU no sea alcanzada por los nodos, estos comenzarán a transmitir los paquetes unos con otros de manera 
 de hacerlos llegar a destino (ya sea otro nodo en particular o la siguiente RSU). Por lo tanto se considera 
 una topología de tipo plana en donde no existe la necesidad de establecer jerarquía ya que cada vehículo es 
-igual de importante en la red.
+igual de importante en la red.\\
 
 Cabe señalar que el enrutamiento de la red ad-hoc va a ser de tipo Flooding el cual es un proceso 
 distribuido en que un nodo transmite un paquete de información a todos sus vecinos y estos a su vez 
 transmiten el paquete a sus vecinos respectivos, permitiendo que el paquete se propague por toda la red. 
 Este tipo de enrutamiento no requiere conocimiento sobre la topología de la red. Los paquetes se 
-transmiten por broadcast a todos los destinos con la expectativa de que alcancen el nodo destino o un RSU.
+transmiten por broadcast a todos los destinos con la expectativa de que alcancen el nodo destino o un RSU.\\
+
+Para representar la topología final, se muestra en la figura \ref{fig:plano_autos} a modo de idea general,
+destacando que la distancia entre los RSU's es de 2[km].\\
+\begin{figure}[H]
+  \centering
+      \includegraphics[width=0.8\textwidth]{plano_autos}
+	    \caption{Topología red Ad-Hoc de modo general.}
+	\label{fig:plano_autos}
+\end{figure}
+
+\newpage
+A continuación en la figura \ref{fig:map_ant} se presenta una imagen de la red de fibra y los RSU's 
+de forma general, vale decir, que las antenas representan 
+sólo la idea de su localización y la cantidad de estas, sin estar a escala su distancia. Cabe señalar, 
+que las antenas deberían estar por la franja verde más gruesa, la cual representa el cableado de fibra óptica 
+por la carretera 68.\\
 
 \begin{figure}[H]
   \centering
-      \includegraphics[width=0.7\textwidth]{}
-	    \caption{Topología final superpuesta en área geográfica.}
-	\label{fig:top_final}
+      \includegraphics[width=0.8\textwidth]{map_ant}
+	    \caption{Topología de modo general.}
+	\label{fig:map_ant}
 \end{figure}
 
 \newpage
@@ -362,6 +392,8 @@ conocimientos que se han adquirido a lo largo de la carrera.
 \bibliographystyle{abbrv}
 %\bibliography{main}
 \section{Fuentes}
+\url{http://www.eecs.harvard.edu/~htk/publication/2001-mobihoc-ckv.pdf}\\
+
 \url{http://en.wikipedia.org/wiki/Wireless_ad_hoc_network}\\
 
 \url{http://es.wikipedia.org/wiki/Mobile_ad_hoc_network}\\
@@ -375,15 +407,5 @@ conocimientos que se han adquirido a lo largo de la carrera.
 \url{http://sourceforge.net/projects/nsnam/files/allinone/ns-allinone-2.34/}\\
 
 \url{http://www.antenna.com/index.cgi}\\
-
-%\newpage
-%\begin{figure}
-%  \centering
-%      \includegraphics[width=0.7\textwidth]{}
-%	    \caption{ }
-%	\label{fig:}
-%\end{figure}
-
-
 \end{document}
 
